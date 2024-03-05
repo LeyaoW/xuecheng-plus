@@ -42,7 +42,8 @@
         <okhttp.version>4.8.1</okhttp.version>
         <swagger-spring-boot-starter.version>1.9.0.RELEASE</swagger-spring-boot-starter.version>
         <elasticsearch.version>7.12.1</elasticsearch.version>
-    </properties>
+  <versions.java-security-toolkit>1.1.2</versions.java-security-toolkit>
+ </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -187,7 +188,12 @@
                 <artifactId>elasticsearch</artifactId>
                 <version>${elasticsearch.version}</version>
             </dependency>
-        </dependencies>
+   <dependency>
+    <groupId>io.github.pixee</groupId>
+    <artifactId>java-security-toolkit</artifactId>
+    <version>${versions.java-security-toolkit}</version>
+   </dependency>
+  </dependencies>
     </dependencyManagement>
 
     <build>
