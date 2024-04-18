@@ -2,6 +2,8 @@ package com.xuecheng.base.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.xuecheng.base.model.RestResponse;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
@@ -34,7 +36,7 @@ public class HttpUtil {
                 + "&client_id=" + ak
                 // 3. 官网获取的 Secret Key
                 + "&client_secret=" + sk;
-            URL realUrl = new URL(getAccessTokenUrl);
+            URL realUrl = Urls.create(getAccessTokenUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             // 打开和URL之间的连接
             HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
             connection.setRequestMethod("GET");
@@ -84,7 +86,7 @@ public class HttpUtil {
 
     public static String postGeneralUrl(String generalUrl, String contentType, String params, String encoding)
             throws Exception {
-        URL url = new URL(generalUrl);
+        URL url = Urls.create(generalUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         // 打开和URL之间的连接
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
