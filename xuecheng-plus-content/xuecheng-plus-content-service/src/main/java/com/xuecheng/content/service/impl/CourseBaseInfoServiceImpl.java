@@ -95,7 +95,7 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         String charge = courseMarket.getCharge();
         if (StringUtils.isBlank(charge))
             XueChengPlusException.cast("请设置收费规则");
-        if (charge.equals("201001")) {
+        if ("201001".equals(charge)) {
             Float price = courseMarket.getPrice();
             if (price == null || price <= 0) {
                 XueChengPlusException.cast("课程设置了收费，价格不能为空，且必须大于0");

@@ -116,9 +116,9 @@ public class OrderController {
             String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"), "UTF-8");
             //付款金额
             String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
-            if (trade_status.equals("TRADE_FINISHED")) {//交易结束
+            if ("TRADE_FINISHED".equals(trade_status)) {//交易结束
 
-            } else if (trade_status.equals("TRADE_SUCCESS")) {
+            } else if ("TRADE_SUCCESS".equals(trade_status)) {
                 // 交易成功，保存订单信息
                 PayStatusDto payStatusDto = new PayStatusDto();
                 payStatusDto.setOut_trade_no(out_trade_no);
