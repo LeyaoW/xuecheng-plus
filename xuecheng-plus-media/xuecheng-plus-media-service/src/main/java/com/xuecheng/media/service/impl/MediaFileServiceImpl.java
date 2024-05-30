@@ -21,6 +21,7 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.UploadObjectArgs;
 import io.minio.errors.*;
+import java.nio.file.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.BeanUtils;
@@ -233,7 +234,7 @@ public class MediaFileServiceImpl implements MediaFileService {
         // 创建出临时文件，准备合并
         File mergeFile = null;
         try {
-            mergeFile = File.createTempFile(fileName, extension);
+            mergeFile = Files.createTempFile(fileName, extension).toFile();
         } catch (IOException e) {
             XueChengPlusException.cast("创建合并临时文件出错");
         }
@@ -353,7 +354,7 @@ public class MediaFileServiceImpl implements MediaFileService {
             File chunkFile = null;
             try {
                 // 创建临时的分块文件
-                chunkFile = File.createTempFile("chunk" + i, null);
+                chunkFile = Files.createTempFile("chunk" + i, null).toFile();
             } catch (Exception e) {
                 XueChengPlusException.cast("创建临时分块文件出错：" + e.getMessage());
             }
