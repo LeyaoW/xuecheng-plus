@@ -9,6 +9,7 @@ import com.xuecheng.media.model.dto.UploadFileParamsDto;
 import com.xuecheng.media.model.dto.UploadFileResultDto;
 import com.xuecheng.media.model.po.MediaFiles;
 import com.xuecheng.media.service.MediaFileService;
+import io.github.pixee.security.Filenames;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class MediaFilesController {
             uploadFileParamsDto.setFileType("001003");
         }
         uploadFileParamsDto.setRemark("");
-        uploadFileParamsDto.setFilename(upload.getOriginalFilename());
+        uploadFileParamsDto.setFilename(Filenames.toSimpleFileName(upload.getOriginalFilename()));
         uploadFileParamsDto.setContentType(contentType);
         Long companyId = 1232141425L;
         try {
