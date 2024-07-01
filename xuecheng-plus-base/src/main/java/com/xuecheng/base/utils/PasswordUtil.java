@@ -1,5 +1,6 @@
 package com.xuecheng.base.utils;
 
+import java.security.SecureRandom;
 import org.apache.commons.codec.binary.Hex;
 
 import java.security.MessageDigest;
@@ -18,7 +19,7 @@ public class PasswordUtil {
 	 * 生成含有随机盐的密码
 	 */
 	public static String generate(String password) {
-		Random r = new Random();
+		Random r = new SecureRandom();
 		StringBuilder sb = new StringBuilder(16);
 		sb.append(r.nextInt(99999999)).append(r.nextInt(99999999));
 		int len = sb.length();
