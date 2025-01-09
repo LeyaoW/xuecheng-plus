@@ -25,6 +25,7 @@ import com.xuecheng.messagesdk.service.MqMessageService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import java.security.SecureRandom;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -253,12 +254,12 @@ public class CoursePublishServiceImpl implements CoursePublishService {
                 // 3. 如果缓存里没有，查询数据库
                 CoursePublish coursePublish = coursePublishMapper.selectById(courseId);
                 if (coursePublish == null) {
-                    redisTemplate.opsForValue().set("course:" + courseId, JSON.toJSONString(null), 30 + new Random().nextInt(100), TimeUnit.SECONDS);
+                    redisTemplate.opsForValue().set("course:" + courseId, JSON.toJSONString(null), 30 + new SecureRandom().nextInt(100), TimeUnit.SECONDS);
                     return null;
                 }
                 String jsonString = JSON.toJSONString(coursePublish);
                 // 3.1 将查询结果缓存
-                redisTemplate.opsForValue().set("course:" + courseId, jsonString, 300 + new Random().nextInt(100), TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set("course:" + courseId, jsonString, 300 + new SecureRandom().nextInt(100), TimeUnit.SECONDS);
                 // 3.1 返回查询结果
                 return coursePublish;
             } finally {
