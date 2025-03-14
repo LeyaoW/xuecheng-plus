@@ -8,6 +8,7 @@ import com.xuecheng.media.service.MediaFileProcessService;
 import com.xuecheng.media.service.MediaFileService;
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
+import java.nio.file.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,9 +70,9 @@ public class VideoTask {
             File mp4File = null;
             try {
                 // 将原始视频下载到本地，创建临时文件
-                originalFile = File.createTempFile("original", null);
+                originalFile = Files.createTempFile("original", null).toFile();
                 // 处理完成后的文件
-                mp4File = File.createTempFile("mp4", ".mp4");
+                mp4File = Files.createTempFile("mp4", ".mp4").toFile();
             } catch (IOException e) {
                 log.error("处理视频前创建临时文件失败");
                 countDownLatch.countDown();

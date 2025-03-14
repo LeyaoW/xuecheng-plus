@@ -25,6 +25,7 @@ import com.xuecheng.messagesdk.service.MqMessageService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import java.nio.file.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -182,7 +183,7 @@ public class CoursePublishServiceImpl implements CoursePublishService {
             String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, map);
             // 5.1 将静态文件内容输出到文件中
             InputStream inputStream = IOUtils.toInputStream(content);
-            htmlFile = File.createTempFile("course", ".html");
+            htmlFile = Files.createTempFile("course", ".html").toFile();
             FileOutputStream fos = new FileOutputStream(htmlFile);
             IOUtils.copy(inputStream, fos);
         } catch (Exception e) {
