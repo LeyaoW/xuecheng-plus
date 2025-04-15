@@ -1,5 +1,6 @@
 package com.xuecheng.base.utils;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Random;
  */
 public final class IdWorkerUtils {
 
-	private static final Random RANDOM = new Random();
+	private static final Random RANDOM = new SecureRandom();
 
 	private static final long WORKER_ID_BITS = 5L;
 

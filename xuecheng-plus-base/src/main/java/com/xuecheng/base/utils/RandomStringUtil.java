@@ -1,6 +1,7 @@
 package com.xuecheng.base.utils;
 
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -16,7 +17,7 @@ public class RandomStringUtil {
          * @return
          */
         public static String getRandomString(int length) {
-            Random random = new Random();
+            Random random = new SecureRandom();
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < length; i++) {
                 int number = random.nextInt(3);
@@ -31,7 +32,7 @@ public class RandomStringUtil {
                         sb.append(String.valueOf((char) result));
                         break;
                     case 2:
-                        sb.append(String.valueOf(new Random().nextInt(10)));
+                        sb.append(String.valueOf(new SecureRandom().nextInt(10)));
                         break;
                 }
             }
