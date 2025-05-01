@@ -2,6 +2,7 @@ package com.xuecheng.base.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.xuecheng.base.model.RestResponse;
+import io.github.pixee.security.BoundedLineReader;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
@@ -49,7 +50,7 @@ public class HttpUtil {
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String result = "";
             String line;
-            while ((line = in.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 result += line;
             }
             in.close();
@@ -117,7 +118,7 @@ public class HttpUtil {
                 new InputStreamReader(connection.getInputStream(), encoding));
         String result = "";
         String getLine;
-        while ((getLine = in.readLine()) != null) {
+        while ((getLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
             result += getLine;
         }
         in.close();
